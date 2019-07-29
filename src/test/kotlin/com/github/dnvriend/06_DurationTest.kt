@@ -12,11 +12,27 @@ import java.time.*
 
 class `06_DurationTest` {
     @Test
-    fun `add duration to time`() {
-        val localTime = LocalTime.parse("06:30")
-        val duration = Duration.ofSeconds(30)
+    fun `add Duration to LocalTime`() {
+        val localTime: LocalTime = LocalTime.parse("06:30")
+        val duration: Duration = Duration.ofSeconds(30)
         val finalTime = localTime.plus(duration)
         assertThat(finalTime.toString()).isEqualTo("06:30:30")
+    }
+
+    @Test
+    fun `add Duration to LocalDateTime`() {
+        val localDateTime: LocalDateTime = LocalDateTime.parse("2015-02-20T06:30")
+        val duration: Duration = Duration.ofSeconds(30)
+        val finalDateTime: LocalDateTime = localDateTime.plus(duration)
+        assertThat(finalDateTime.toString()).isEqualTo("2015-02-20T06:30:30")
+    }
+
+    @Test
+    fun `add Duration to ZonedDateTime`() {
+        val zonedDateTime: ZonedDateTime = ZonedDateTime.parse("2015-02-20T10:00+02:00")
+        val duration: Duration = Duration.ofSeconds(30)
+        val finalZonedDateTime: ZonedDateTime = zonedDateTime.plus(duration)
+        assertThat(finalZonedDateTime.toString()).isEqualTo("2015-02-20T10:00:30+02:00")
     }
 
     @Test

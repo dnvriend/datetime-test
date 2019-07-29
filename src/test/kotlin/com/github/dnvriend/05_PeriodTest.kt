@@ -12,11 +12,27 @@ import java.time.*
 
 class `05_PeriodTest` {
     @Test
-    fun `manipulate LocalDate with Period`() {
+    fun `add Period to LocalDate`() {
         val period: Period = Period.ofDays(5)
         val localDate: LocalDate = LocalDate.parse("2015-02-20")
         val finalDate: LocalDate = localDate.plus(period)
         assertThat(finalDate.toString()).isEqualTo("2015-02-25")
+    }
+
+    @Test
+    fun `add Period to LocalDateTime`() {
+        val localDateTime: LocalDateTime = LocalDateTime.parse("2015-02-20T06:30")
+        val period: Period = Period.ofDays(5)
+        val finalDateTime: LocalDateTime = localDateTime.plus(period)
+        assertThat(finalDateTime.toString()).isEqualTo("2015-02-25T06:30")
+    }
+
+    @Test
+    fun `add Period to ZonedDateTime`() {
+        val zonedDateTime: ZonedDateTime = ZonedDateTime.parse("2015-02-20T10:00+02:00")
+        val period: Period = Period.ofDays(5)
+        val finalZonedDateTime: ZonedDateTime = zonedDateTime.plus(period)
+        assertThat(finalZonedDateTime.toString()).isEqualTo("2015-02-25T10:00+02:00")
     }
 
     @Test
